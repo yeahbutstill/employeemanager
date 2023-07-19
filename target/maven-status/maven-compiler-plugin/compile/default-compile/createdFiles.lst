@@ -1,4 +1,8 @@
-tech\getarrays\employeemanager\service\EmployeeService.class
-tech\getarrays\employeemanager\EmployeeResource.class
-tech\getarrays\employeemanager\exception\UserNotFoundException.class
-tech\getarrays\employeemanager\repo\EmployeeRepo.class
+tech/getarrays/employeemanager/service/EmployeeService.class
+tech/getarrays/employeemanager/model/Employee.class
+tech/getarrays/employeemanager/exception/UserNotFoundException.class
+tech/getarrays/employeemanager/resource/EmployeeResource.class
+tech/getarrays/employeemanager/service/impl/EmployeeServiceImpl.class
+tech/getarrays/employeemanager/EmployeemanagerApplication.class
+tech/getarrays/employeemanager/configuration/SecurityConfiguration.class
+tech/getarrays/employeemanager/repo/EmployeeRepo.class

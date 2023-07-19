@@ -1,98 +1,64 @@
 package tech.getarrays.employeemanager.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
+import org.hibernate.proxy.HibernateProxy;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
+
+    @NotBlank
+    @NotEmpty
     private String name;
+
+    @NotBlank
+    @NotEmpty
+    @Email
     private String email;
+
+    @NotBlank
+    @NotEmpty
     private String jobTitle;
+
+    @NotBlank
+    @NotEmpty
     private String phone;
+
+    @NotBlank
+    @NotEmpty
     private String imageUrl;
+
     @Column(nullable = false, updatable = false)
     private String employeeCode;
 
-    public Employee() {}
-
-    public Employee(String name, String email, String jobTitle, String phone, String imageUrl, String employeeCode) {
-        this.name = name;
-        this.email = email;
-        this.jobTitle = jobTitle;
-        this.phone = phone;
-        this.imageUrl = imageUrl;
-        this.employeeCode = employeeCode;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getEmployeeCode() {
-        return employeeCode;
-    }
-
-    public void setEmployeeCode(String employeeCode) {
-        this.employeeCode = employeeCode;
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) return false;
+        Employee employee = (Employee) o;
+        return getId() != null && Objects.equals(getId(), employee.getId());
     }
 
     @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
-                ", phone='" + phone + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                '}';
+    public final int hashCode() {
+        return getClass().hashCode();
     }
 }
